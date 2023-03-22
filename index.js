@@ -212,7 +212,7 @@ const WeeklyCalendar = (props) => {
       const number = moment().format("d");
       const check = number === "0" ? 6 : number - 1;
       scrollViewRef.current.scrollTo({ y: offsets[check], animated: true });
-    }, 500);
+    }, 1000);
   };
 
   const clickLastWeekHandler = () => {
