@@ -211,7 +211,14 @@ const WeeklyCalendar = (props) => {
     setTimeout(() => {
       const number = moment().format("d");
       const check = number === "0" ? 6 : number - 1;
-      scrollViewRef.current.scrollTo({ y: offsets[check], animated: true });
+      if (
+        offsets[check] !== undefined &&
+        offsets[check] !== null &&
+        scrollViewRef &&
+        scrollViewRef.current !== null
+      ) {
+        scrollViewRef.current.scrollTo({ y: offsets[check], animated: true });
+      }
     }, 1000);
   };
 
@@ -284,7 +291,9 @@ const WeeklyCalendar = (props) => {
           style={styles.arrowButton}
           onPress={clickLastWeekHandler}
         >
-          <Text style={{ color: props.themeColor }}>{"\u25C0"}</Text>
+          <Text style={{ color: props.themeColor, fontSize: 16 }}>
+            {"\u25C0"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={1}
@@ -303,7 +312,9 @@ const WeeklyCalendar = (props) => {
           style={styles.arrowButton}
           onPress={clickNextWeekHandler}
         >
-          <Text style={{ color: props.themeColor }}>{"\u25B6"}</Text>
+          <Text style={{ color: props.themeColor, fontSize: 16 }}>
+            {"\u25B6"}
+          </Text>
         </TouchableOpacity>
       </View>
       <View style={styles.week}>
