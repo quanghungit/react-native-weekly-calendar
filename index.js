@@ -219,7 +219,7 @@ const WeeklyCalendar = (props) => {
       ) {
         scrollViewRef.current.scrollTo({ y: offsets[check], animated: true });
       }
-    }, 1000);
+    }, 700);
   };
 
   const clickLastWeekHandler = () => {
