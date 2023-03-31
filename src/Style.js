@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
     alignItems: "center",
     backgroundColor: "white",
-    borderColor: "grey",
+    borderColor: "#B4B4B4",
     borderTopWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
