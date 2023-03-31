@@ -691,7 +691,7 @@ WeeklyCalendar.defaultProps = {
   // All props are optional
   selected: moment(),
   startWeekday: 7,
-  titleFormat: undefined,
+  titleFormat: "[Tháng] MM [năm] YYYY",
   weekdayFormat: "ddd",
   locale: "en",
   events: [],
