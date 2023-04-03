@@ -219,7 +219,13 @@ const WeeklyCalendar = (props) => {
         scroll
       ) {
         scrollViewRef.current.scrollTo({ y: offsets[check], animated: true });
-      } else if (!scroll) {
+      } else if (
+        offsets[check] !== undefined &&
+        offsets[check] !== null &&
+        scrollViewRef &&
+        scrollViewRef.current !== null &&
+        !scroll
+      ) {
         scrollViewRef.current.scrollTo({ y: offsets[0], animated: true });
       }
     }, 700);
