@@ -59,10 +59,10 @@ const WeeklyCalendar = (props) => {
       }
     }
     setEventMap(dateMap);
-    createWeekdays(currDate, dateMap);
+    createWeekdays(currDate, dateMap, true);
   };
 
-  const createWeekdays = (date, map) => {
+  const createWeekdays = (date, map, scroll) => {
     let dayViews = [];
     let offsets = [];
     setWeekdays([]);
@@ -215,9 +215,12 @@ const WeeklyCalendar = (props) => {
         offsets[check] !== undefined &&
         offsets[check] !== null &&
         scrollViewRef &&
-        scrollViewRef.current !== null
+        scrollViewRef.current !== null &&
+        scroll
       ) {
         scrollViewRef.current.scrollTo({ y: offsets[check], animated: true });
+      } else if (!scroll) {
+        scrollViewRef.current.scrollTo({ y: offsets[0], animated: true });
       }
     }, 700);
   };
@@ -227,7 +230,7 @@ const WeeklyCalendar = (props) => {
     const lastWeekCurrDate = currDate.subtract(7, "days");
     setCurrDate(lastWeekCurrDate.clone());
     setSelectedDate(lastWeekCurrDate.clone().weekday(props.startWeekday - 7));
-    createWeekdays(lastWeekCurrDate.clone(), eventMap);
+    createWeekdays(lastWeekCurrDate.clone(), eventMap, false);
     setCalendarReady(true);
 
     props.onPressPreviousWeek(lastWeekCurrDate);
@@ -238,7 +241,7 @@ const WeeklyCalendar = (props) => {
     const nextWeekCurrDate = currDate.add(7, "days");
     setCurrDate(nextWeekCurrDate.clone());
     setSelectedDate(nextWeekCurrDate.clone().weekday(props.startWeekday - 7));
-    createWeekdays(nextWeekCurrDate.clone(), eventMap);
+    createWeekdays(nextWeekCurrDate.clone(), eventMap, false);
     setCalendarReady(true);
     props.onPressNextWeek(nextWeekCurrDate);
   };
@@ -272,7 +275,7 @@ const WeeklyCalendar = (props) => {
     setSelectedDate(pickedDate);
 
     setCalendarReady(false);
-    createWeekdays(pickedDate, eventMap);
+    createWeekdays(pickedDate, eventMap, true);
     setCalendarReady(true);
 
     setPickerVisible(false);
